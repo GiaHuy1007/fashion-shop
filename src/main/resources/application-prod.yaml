@@ -1,0 +1,133 @@
+spring:
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT:5432}/${POSTGRES_DB}}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: FashionHikariPool-Prod
+      maximum-pool-size: ${DB_POOL_MAX_SIZE:30}
+      minimum-idle: ${DB_POOL_MIN_IDLE:10}
+      connection-timeout: 5000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  jpa:
+    show-sql: false
+
+  flyway:
+    locations: classpath:db/migration
+    clean-disabled: true
+
+  mongodb:
+    uri: ${MONGO_URI}
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD}
+      ssl:
+        enabled: ${REDIS_SSL_ENABLED:false}
+      lettuce:
+        pool:
+          max-active: 64
+          max-idle: 32
+          min-idle: 8
+
+  cache:
+    redis:
+      key-prefix: "prod:cache:"
+
+  elasticsearch:
+    uris: ${ES_URIS}
+    username: ${ES_USERNAME:}
+    password: ${ES_PASSWORD:}
+    connection-timeout: 2s
+    socket-timeout: 3s
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_AMQP_PORT:5672}
+    username: ${RABBITMQ_USER}
+    password: ${RABBITMQ_PASSWORD}
+
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+management:
+  endpoint:
+    health:
+      show-details: when_authorized
+
+logging:
+  level:
+    root: WARN
+    cntt.giahuy.fashion_shop: INFO
+    com.fashion.shop: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+
+app:
+  cors:
+    allowed-origin-patterns:
+      - "${CORS_ALLOWED_ORIGIN_PATTERNS:https://*.fashion.vn}"
+
+  jwt:
+    cookie-secure: true
+    refresh-secret: ${JWT_REFRESH_SECRET}
+    access-private-key: ${JWT_ACCESS_PRIVATE_KEY}
+    access-public-key: ${JWT_ACCESS_PUBLIC_KEY}
+
+  minio:
+    endpoint: ${MINIO_ENDPOINT}
+    access-key: ${MINIO_ACCESS_KEY}
+    secret-key: ${MINIO_SECRET_KEY}
+    cdn-base-url: ${CDN_BASE_URL:https://cdn.fashion.vn}
+
+  websocket:
+    broker-mode: ${WS_BROKER_MODE:relay}
+    allowed-origin-patterns:
+      - "${WS_ALLOWED_ORIGIN_PATTERNS:https://*.fashion.vn}"
+    stomp-relay:
+      host: ${RABBITMQ_HOST}
+      port: ${RABBITMQ_STOMP_PORT:61613}
+      client-login: ${RABBITMQ_USER}
+      client-passcode: ${RABBITMQ_PASSWORD}
+      system-login: ${RABBITMQ_USER}
+      system-passcode: ${RABBITMQ_PASSWORD}
+
+  payment:
+    frontend-return-url: ${PAYMENT_FE_RETURN_URL:https://fashion.vn/checkout/result}
+    vnpay:
+      tmn-code: ${VNPAY_TMN_CODE}
+      hash-secret: ${VNPAY_HASH_SECRET}
+      pay-url: ${VNPAY_PAY_URL:https://pay.vnpay.vn/vpcpay.html}
+      api-url: ${VNPAY_API_URL:https://merchant.vnpay.vn/merchant_webapi/api/transaction}
+      return-url: ${VNPAY_RETURN_URL:https://api.fashion.vn/api/v1/payments/return/VNPAY}
+    momo:
+      partner-code: ${MOMO_PARTNER_CODE}
+      access-key: ${MOMO_ACCESS_KEY}
+      secret-key: ${MOMO_SECRET_KEY}
+      endpoint: ${MOMO_ENDPOINT:https://payment.momo.vn/v2/gateway/api}
+      return-url: ${MOMO_RETURN_URL:https://api.fashion.vn/api/v1/payments/return/MOMO}
+      ipn-url: ${MOMO_IPN_URL:https://api.fashion.vn/api/v1/payments/webhook/MOMO}
+    stripe:
+      api-key: ${STRIPE_API_KEY}
+      webhook-secret: ${STRIPE_WEBHOOK_SECRET}

@@ -1,0 +1,137 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:fashion_shop}
+    username: ${POSTGRES_USER:fashion}
+    password: ${POSTGRES_PASSWORD:fashion_secret}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: FashionHikariPool-Dev
+      maximum-pool-size: 15
+      minimum-idle: 5
+      connection-timeout: 10000
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      leak-detection-threshold: 15000
+
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    locations: classpath:db/migration,classpath:db/seed
+
+  mongodb:
+    uri: ${MONGO_URI:mongodb://fashion:fashion_secret@localhost:27017/fashion_shop?authSource=admin}
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+
+  cache:
+    redis:
+      key-prefix: "dev:cache:"
+
+  elasticsearch:
+    uris: ${ES_URIS:http://localhost:9200}
+    connection-timeout: 3s
+    socket-timeout: 5s
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_AMQP_PORT:5672}
+    username: ${RABBITMQ_USER:fashion}
+    password: ${RABBITMQ_PASSWORD:fashion_secret}
+
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    display-request-duration: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    root: INFO
+    cntt.giahuy.fashion_shop: DEBUG
+    com.fashion.shop: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web.socket: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+
+app:
+  cors:
+    allowed-origin-patterns:
+      - "http://localhost:*"
+      - "http://127.0.0.1:*"
+
+  jwt:
+    cookie-secure: false
+    # Khóa bí mật mẫu dùng cho môi trường dev (Production bắt buộc truyền qua biến môi trường)
+    refresh-secret: ${JWT_REFRESH_SECRET:dev-only-refresh-secret-key-must-be-at-least-64-bytes-long-for-hs512-algorithm-2026}
+    access-private-key: ${JWT_ACCESS_PRIVATE_KEY:}
+    access-public-key: ${JWT_ACCESS_PUBLIC_KEY:}
+
+  minio:
+    endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+    access-key: ${MINIO_ROOT_USER:minioadmin}
+    secret-key: ${MINIO_ROOT_PASSWORD:minioadmin123}
+    cdn-base-url: ${CDN_BASE_URL:http://localhost:9000/fashion-public}
+
+  websocket:
+    broker-mode: ${WS_BROKER_MODE:simple}
+    allowed-origin-patterns:
+      - "http://localhost:*"
+      - "http://127.0.0.1:*"
+    stomp-relay:
+      host: ${RABBITMQ_HOST:localhost}
+      port: ${RABBITMQ_STOMP_PORT:61613}
+      client-login: ${RABBITMQ_USER:fashion}
+      client-passcode: ${RABBITMQ_PASSWORD:fashion_secret}
+      system-login: ${RABBITMQ_USER:fashion}
+      system-passcode: ${RABBITMQ_PASSWORD:fashion_secret}
+
+  payment:
+    frontend-return-url: ${PAYMENT_FE_RETURN_URL:http://localhost:3000/checkout/result}
+    vnpay:
+      tmn-code: ${VNPAY_TMN_CODE:DEMO_TMN_CODE}
+      hash-secret: ${VNPAY_HASH_SECRET:DEMO_VNPAY_HMAC_SHA512_SECRET_KEY}
+      pay-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+      api-url: https://sandbox.vnpayment.vn/merchant_webapi/api/transaction
+      return-url: http://localhost:8080/api/v1/payments/return/VNPAY
+    momo:
+      partner-code: ${MOMO_PARTNER_CODE:MOMO_DEMO}
+      access-key: ${MOMO_ACCESS_KEY:DEMO_ACCESS_KEY}
+      secret-key: ${MOMO_SECRET_KEY:DEMO_MOMO_HMAC_SHA256_SECRET_KEY}
+      endpoint: https://test-payment.momo.vn/v2/gateway/api
+      return-url: http://localhost:8080/api/v1/payments/return/MOMO
+      ipn-url: http://localhost:8080/api/v1/payments/webhook/MOMO
+    stripe:
+      api-key: ${STRIPE_API_KEY:sk_test_placeholder}
+      webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}
