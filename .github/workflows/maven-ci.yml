@@ -1,0 +1,104 @@
+name: Maven CI & Architecture Verification
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+# Tự động huỷ các bản chạy CI cũ trên cùng 1 nhánh PR khi dev push commit mới
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+
+permissions:
+  contents: read
+
+env:
+  JAVA_VERSION: '27'
+  MAVEN_OPTS: >-
+    -Dhttp.keepAlive=false
+    -Dmaven.wagon.http.pool=false
+    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120
+
+jobs:
+  # =====================================================================
+  # Job 1: Build, Kiểm tra Kiến trúc (ArchUnit/Modulith) & Integration Test
+  # =====================================================================
+  build-and-verify:
+    name: Build, ArchUnit & Testcontainers (Java ${{ env.JAVA_VERSION }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v7
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }} (Temurin) & Maven Cache
+        uses: actions/setup-java@v6
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Grant execute permission for mvnw
+        run: chmod +x mvnw
+
+      - name: Validate docker-compose.yml syntax
+        run: docker compose -f docker-compose.yml config -q
+
+      - name: Compile & Verify (Unit Tests, ArchUnit, Modulith & Testcontainers)
+        run: ./mvnw -B clean verify --file pom.xml
+
+      - name: Upload Test Reports on Failure
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: maven-test-reports-${{ github.run_id }}
+          path: |
+            target/surefire-reports/
+            target/failsafe-reports/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload Packaged Spring Boot JAR
+        if: success() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+        uses: actions/upload-artifact@v7
+        with:
+          name: fashion-shop-jar-${{ github.sha }}
+          path: target/*.jar
+          if-no-files-found: error
+          retention-days: 7
+
+  # =====================================================================
+  # Job 2: Kiểm tra đóng gói Docker Image (Multi-stage Layered JAR)
+  # =====================================================================
+  docker-build-check:
+    name: Verify Multi-stage Dockerfile Build
+    needs: build-and-verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v7
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image (with GitHub Actions layer cache)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          load: true
+          tags: fashion-shop:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
