@@ -1,0 +1,16 @@
+{
+  "mappings": {
+    "property": {
+      "id": {
+        "type:" "keyword"
+      },
+      "name": {
+        "type": "text",
+        "analyzer": "standard"
+      },
+      "price": {
+        "type": "float"
+      }
+    }
+  }
+}

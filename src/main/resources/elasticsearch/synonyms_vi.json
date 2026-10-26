@@ -1,0 +1,208 @@
+{
+  "synonyms_set": [
+    {
+      "id": "tshirt",
+      "synonyms": "áo thun, áo phông, áo cộc tay, t-shirt, tshirt, tee, áo tee"
+    },
+    {
+      "id": "polo",
+      "synonyms": "áo polo, áo thun có cổ, áo phông có cổ, áo cổ bẻ, polo shirt"
+    },
+    {
+      "id": "shirt",
+      "synonyms": "áo sơ mi, sơ mi, áo somi, shirt, dress shirt, button-down"
+    },
+    {
+      "id": "tanktop",
+      "synonyms": "áo ba lỗ, áo sát nách, áo hai dây, tank top, tanktop, camisole"
+    },
+    {
+      "id": "croptop",
+      "synonyms": "áo croptop, crop top, croptop, áo lửng, áo ngắn"
+    },
+    {
+      "id": "hoodie",
+      "synonyms": "áo hoodie, hoodie, áo nỉ có mũ, áo khoác nỉ có mũ"
+    },
+    {
+      "id": "sweatshirt",
+      "synonyms": "áo sweatshirt, sweatshirt, sweater, áo nỉ không mũ, áo nỉ cổ tròn, crewneck"
+    },
+    {
+      "id": "cardigan",
+      "synonyms": "áo cardigan, cardigan, áo khoác len, áo len cài nút"
+    },
+    {
+      "id": "knitwear",
+      "synonyms": "áo len, áo dệt kim, knitwear, pullover"
+    },
+    {
+      "id": "jacket",
+      "synonyms": "áo khoác, jacket, áo gió, áo khoác gió, windbreaker, coat, outerwear"
+    },
+    {
+      "id": "bomber",
+      "synonyms": "áo bomber, áo khoác bomber, bomber jacket, varsity, áo khoác bóng chày"
+    },
+    {
+      "id": "blazer",
+      "synonyms": "áo blazer, blazer, áo vest, áo khoác vest, suit jacket"
+    },
+    {
+      "id": "puffer",
+      "synonyms": "áo phao, áo khoác phao, áo lông vũ, puffer, puffer jacket, down jacket"
+    },
+    {
+      "id": "jeans",
+      "synonyms": "quần bò, quần jean, quần jeans, jeans, denim pants"
+    },
+    {
+      "id": "trousers",
+      "synonyms": "quần tây, quần âu, quần vải, quần ống đứng, trousers, slacks, dress pants"
+    },
+    {
+      "id": "khaki",
+      "synonyms": "quần kaki, quần chino, khaki, chinos"
+    },
+    {
+      "id": "jogger",
+      "synonyms": "quần jogger, quần thể thao bo ống, quần nỉ bo gấu, joggers, sweatpants, track pants"
+    },
+    {
+      "id": "cargo",
+      "synonyms": "quần túi hộp, quần cargo, cargo pants"
+    },
+    {
+      "id": "shorts",
+      "synonyms": "quần short, quần đùi, quần sọt, quần lửng, shorts, short pants"
+    },
+    {
+      "id": "wideleg",
+      "synonyms": "quần ống rộng, quần ống suông, quần culottes, culottes, wide leg, baggy, quần baggy"
+    },
+    {
+      "id": "leggings",
+      "synonyms": "quần legging, quần bó, quần tập yoga, leggings, tights"
+    },
+    {
+      "id": "dress",
+      "synonyms": "đầm, váy liền, váy liền thân, áo đầm, dress, one-piece"
+    },
+    {
+      "id": "skirt",
+      "synonyms": "chân váy, váy rời, skirt, mini skirt, midi skirt"
+    },
+    {
+      "id": "jumpsuit",
+      "synonyms": "đồ bay, bộ liền thân, jumpsuit, romper, playsuit"
+    },
+    {
+      "id": "sportswear",
+      "synonyms": "đồ thể thao, đồ tập gym, quần áo thể thao, sportswear, activewear, gymwear"
+    },
+    {
+      "id": "sleepwear",
+      "synonyms": "đồ ngủ, bộ mặc nhà, pijama, pyjama, đồ bộ, sleepwear, loungewear, homewear"
+    },
+    {
+      "id": "underwear",
+      "synonyms": "đồ lót, nội y, quần lót, áo ngực, underwear, lingerie, boxer, brief, bra"
+    },
+    {
+      "id": "swimwear",
+      "synonyms": "đồ bơi, áo tắm, bikini, swimwear, swimsuit"
+    },
+    {
+      "id": "sneaker",
+      "synonyms": "giày thể thao, giày sneaker, sneakers, sneaker, giày chạy bộ, trainers"
+    },
+    {
+      "id": "heels",
+      "synonyms": "giày cao gót, guốc cao gót, high heels, heels, pumps"
+    },
+    {
+      "id": "boots",
+      "synonyms": "giày bốt, giày boot, bốt cổ thấp, bốt cổ cao, boots, ankle boots, chelsea boots"
+    },
+    {
+      "id": "sandals",
+      "synonyms": "giày sandal, xăng đan, dép quai hậu, sandals, sandal"
+    },
+    {
+      "id": "loafers",
+      "synonyms": "giày lười, giày mọi, giày tây không dây, loafers, moccasin, slip-on"
+    },
+    {
+      "id": "bag",
+      "synonyms": "túi xách, túi đeo chéo, túi tote, handbag, crossbody bag, shoulder bag, tote bag"
+    },
+    {
+      "id": "backpack",
+      "synonyms": "ba lô, balo, túi đeo lưng, backpack, rucksack"
+    },
+    {
+      "id": "wallet",
+      "synonyms": "ví tiền, bóp tiền, ví da, ví cầm tay, wallet, purse, cardholder, clutch"
+    },
+    {
+      "id": "hat",
+      "synonyms": "mũ, nón, mũ lưỡi trai, nón kết, mũ tai bèo, nón bucket, cap, baseball cap, bucket hat, beanie"
+    },
+    {
+      "id": "belt",
+      "synonyms": "thắt lưng, dây nịt, dây lưng, belt, leather belt"
+    },
+    {
+      "id": "socks",
+      "synonyms": "tất, vớ, tất cổ cao, tất cổ ngắn, socks, ankle socks"
+    },
+    {
+      "id": "glasses",
+      "synonyms": "kính mát, kính râm, mắt kính thời trang, sunglasses, eyewear"
+    },
+    {
+      "id": "fit_oversize",
+      "synonyms": "form rộng, dáng rộng, freesize, quá khổ, oversize, oversized, loose fit, relaxed fit"
+    },
+    {
+      "id": "fit_slim",
+      "synonyms": "form ôm, dáng ôm, ôm sát, bó sát, slim fit, slimfit, skinny, bodycon"
+    },
+    {
+      "id": "fit_regular",
+      "synonyms": "form vừa, dáng suông, dáng chuẩn, regular fit, standard fit, classic fit"
+    },
+    {
+      "id": "material_denim",
+      "synonyms": "vải bò, vải jean, chất bò, chất jean, denim"
+    },
+    {
+      "id": "material_linen",
+      "synonyms": "vải đũi, vải lanh, chất đũi, chất lanh, linen"
+    },
+    {
+      "id": "material_leather",
+      "synonyms": "da thật, da tổng hợp, da pu, giả da, leather, faux leather, suede, da lộn"
+    },
+    {
+      "id": "material_fleece",
+      "synonyms": "vải nỉ, nỉ bông, nỉ chân cua, fleece, french terry"
+    },
+    {
+      "id": "color_black",
+      "synonyms": "màu đen, đen, black, blk"
+    },
+    {
+      "id": "color_white",
+      "synonyms": "màu trắng, trắng, trắng kem, trắng ngà, white, off-white, ivory, cream"
+    },
+    {
+      "id": "color_beige",
+      "synonyms": "màu be, màu kem, màu nâu nhạt, beige, nude, khaki, sand"
+    },
+    {
+      "id": "color_navy",
+      "synonyms": "xanh than, xanh tím than, xanh đen, xanh hải quân, navy, navy blue"
+    }
+  ]
+}
