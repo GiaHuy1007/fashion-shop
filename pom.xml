@@ -332,6 +332,12 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
+			<!-- Ép sử dụng ArchUnit 1.5.1+ (hỗ trợ bytecode Java 27 - class file version 71) cho cả Spring Modulith -->
+			<dependency>
+				<groupId>com.tngtech.archunit</groupId>
+				<artifactId>archunit</artifactId>
+				<version>${archunit.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.modulith</groupId>
 				<artifactId>spring-modulith-bom</artifactId>
