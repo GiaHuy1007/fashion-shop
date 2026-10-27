@@ -67,7 +67,7 @@ class ModuleBoundaryTest {
     }
 
     @Test
-    @DisplayName("R1: Modules must not directly access internal packages (repository, service, internal, controller, etc.) of other modules")
+    @DisplayName("R1: Modules must not directly access internal packages (repository, service, internal, controller, etc.) from other modules")
     void r1_modulesShouldOnlyAccessPublicApiOrEventPackagesOfOtherModules() {
         for (String module : INTERNAL_SUBPACKAGES) {
             String moduleRoot = BASE_PACKAGE + "." + module;
@@ -113,7 +113,7 @@ class ModuleBoundaryTest {
                     .and().areAnnotatedWith(Document.class)
                     .should().dependOnClassesThat().resideInAnyPackage(otherFeaturePackages)
                     .allowEmptyShould(true)
-                    .because("Entities/documents belonging to module [" + module + "] must store IDs or snapshots instead of establishing relationships with other modules (Rule R2)");
+                    .because("Entities/documents belonging to module [" + module + "] must store IDs or snapshots instead from establishing relationships with other modules (Rule R2)");
 
             entitiesMustStayIsolated.check(importedClasses);
         }
@@ -158,7 +158,7 @@ class ModuleBoundaryTest {
                         BASE_PACKAGE + ".media.."
                 )
                 .allowEmptyShould(true)
-                .because("Catalog is at the bottom of the dependency DAG and may only publish ProductUpdatedEvent instead of calling downstream modules directly (Rule R4)");
+                .because("Catalog is at the bottom from the dependency DAG and may only publish ProductUpdatedEvent instead from calling downstream modules directly (Rule R4)");
 
         catalogMustNotDependOnDownstreamModules.check(importedClasses);
 

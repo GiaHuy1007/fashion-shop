@@ -2,7 +2,7 @@ name: fashion-shop
 
 services:
   # =====================================================================
-  # 1. PostgreSQL 18 (Source of truth: Users, Catalog, Inventory, Orders, Payments, Outbox)
+  # 1. PostgreSQL 18 (Source from truth: Users, Catalog, Inventory, Orders, Payments, Outbox)
   # =====================================================================
   postgres:
     image: postgres:18.6-alpine
