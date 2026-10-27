@@ -25,11 +25,11 @@ public record ApiResponse<T> (boolean success, T data, ErrorDetail error, String
         );
     }
 
-    public static <T> ApiResponse<T> error(String code, String message, Object details) {
+    public static <T> ApiResponse<T> error(ErrorDetail details) {
         return new ApiResponse<>(
                 false,
                 null,
-                ErrorDetail.from(code, message, details), MDC.get("traceId"),
+                ErrorDetail.from(details.code(), details.message(), details.fieldErrors()), MDC.get("traceId"),
                 Instant.now()
         );
     }
