@@ -1,8 +1,9 @@
 # =====================================================================
-# Design & Internal Docs
+# Design, Internal Docs & Local Docker Data
 # =====================================================================
 fashion_ecommerce_backend_design.md
 HELP.md
+/data/
 
 # =====================================================================
 # Maven & Build Outputs

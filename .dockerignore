@@ -19,3 +19,4 @@ target/
 *.log
 docker-compose*.yml
 Dockerfile
+data/

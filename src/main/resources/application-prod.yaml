@@ -92,8 +92,6 @@ app:
   jwt:
     cookie-secure: true
     refresh-secret: ${JWT_REFRESH_SECRET}
-    access-private-key: ${JWT_ACCESS_PRIVATE_KEY}
-    access-public-key: ${JWT_ACCESS_PUBLIC_KEY}
 
   minio:
     endpoint: ${MINIO_ENDPOINT}

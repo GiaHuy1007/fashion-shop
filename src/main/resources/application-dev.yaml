@@ -95,8 +95,7 @@ app:
     cookie-secure: false
     # Khóa bí mật mẫu dùng cho môi trường dev (Production bắt buộc truyền qua biến môi trường)
     refresh-secret: ${JWT_REFRESH_SECRET:dev-only-refresh-secret-key-must-be-at-least-64-bytes-long-for-hs512-algorithm-2026}
-    access-private-key: ${JWT_ACCESS_PRIVATE_KEY:}
-    access-public-key: ${JWT_ACCESS_PUBLIC_KEY:}
+
 
   minio:
     endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
