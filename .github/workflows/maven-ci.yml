@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - develop
+      - dev
   pull_request:
     branches:
       - main
-      - develop
+      - dev
   workflow_dispatch:
 
 # Tự động huỷ các bản chạy CI cũ trên cùng 1 nhánh PR khi dev push commit mới
