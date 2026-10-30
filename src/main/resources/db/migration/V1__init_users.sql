@@ -3,7 +3,7 @@ create table roles (
     name varchar(30) not null,
 
     constraint pk_roles primary key (id),
-    constraint uq_roles_name unique (name)
+    constraint uk_roles_name unique (name)
 );
 
 create table users (
@@ -21,9 +21,9 @@ create table users (
     deleted_at timestamptz,
 
     constraint pk_users primary key (id),
-    constraint uq_email unique (email),
-    constraint uq_phone unique (phone),
-    constraint ck_status check ( status in ('ACTIVE', 'LOCKED') )
+    constraint uk_users_email unique (email),
+    constraint uk_users_phone unique (phone),
+    constraint ck_users_status check ( status in ('ACTIVE', 'LOCKED') )
 );
 
 create table user_roles (
@@ -31,8 +31,8 @@ create table user_roles (
     role_id smallint not null,
 
     constraint pk_user_roles primary key (user_id, role_id),
-    constraint fk_user_roles_user foreign key (user_id) references users(id) on delete cascade,
-    constraint fk_user_roles_role foreign key (role_id) references roles(id) on delete cascade
+    constraint fk_user_roles_user_id foreign key (user_id) references users(id) on delete cascade,
+    constraint fk_user_roles_role_id foreign key (role_id) references roles(id) on delete cascade
 );
 create index idx_user_roles_role_id on user_roles (role_id);
 
@@ -50,7 +50,7 @@ create table addresses (
     updated_at timestamptz not null default now(),
 
     constraint pk_addresses primary key (id),
-    constraint fk_addresses_user foreign key (user_id) references users(id)
+    constraint fk_addresses_user_id foreign key (user_id) references users(id) on delete cascade
 );
 create index idx_address_user_id on addresses (user_id);
-create unique index uq_addresses_default_per_user on addresses (user_id) where is_default = true;
+create unique index uk_addresses_default_per_user on addresses (user_id) where is_default = true;
